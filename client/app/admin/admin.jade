@@ -1,0 +1,7 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container
+  ul.list-group
+    li.list-group-item(ng-repeat='user in users')
+      strong {{user.name}}
+      br
+      span.text-muted {{user.email}}

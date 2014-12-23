@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Change home directory (bower puts a lot of cache and tmp directories here)
+HOME=$OPENSHIFT_REPO_DIR
+cd $OPENSHIFT_REPO_DIR
+
+mkdir -p "$OPENSHIFT_DATA_DIR"node_modules
+mkdir -p "$OPENSHIFT_DATA_DIR"bower_components
+
+ln -s "$OPENSHIFT_DATA_DIR"node_modules node_modules
+ln -s "$OPENSHIFT_DATA_DIR"bower_components client
+
+npm install --loglevel error
+
+# Prune unused node node_modules
+npm prune
+
+bower install -q
+grunt build
+
+ls -1 | grep -E -v 'dist|node_modules' | xargs rm -rf
+mv dist/* .
+rm -rf dist
+
+cp ${OPENSHIFT_DATA_DIR}local.env.js server/config/

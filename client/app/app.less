@@ -1,0 +1,73 @@
+@bootstrap-path: '../bower_components/bootstrap/less/';
+@bootswatch-path: '../bower_components/bootswatch/paper/';
+
+// Core variables and mixins
+@import "@{bootswatch-path}variables.less";
+@import "@{bootstrap-path}mixins.less";
+
+// Reset and dependencies
+@import "@{bootstrap-path}normalize.less";
+@import "@{bootstrap-path}print.less";
+
+@import 'font-awesome/less/font-awesome.less';
+@fa-font-path: '/bower_components/font-awesome/fonts';
+
+// Core CSS
+@import "@{bootstrap-path}scaffolding.less";
+@import "@{bootstrap-path}type.less";
+@import "@{bootstrap-path}code.less";
+@import "@{bootstrap-path}grid.less";
+@import "@{bootstrap-path}tables.less";
+@import "@{bootstrap-path}forms.less";
+@import "@{bootstrap-path}buttons.less";
+
+// Components
+@import "@{bootstrap-path}component-animations.less";
+@import "@{bootstrap-path}dropdowns.less";
+@import "@{bootstrap-path}button-groups.less";
+@import "@{bootstrap-path}input-groups.less";
+@import "@{bootstrap-path}navs.less";
+@import "@{bootstrap-path}navbar.less";
+@import "@{bootstrap-path}breadcrumbs.less";
+@import "@{bootstrap-path}pagination.less";
+@import "@{bootstrap-path}pager.less";
+@import "@{bootstrap-path}labels.less";
+@import "@{bootstrap-path}badges.less";
+@import "@{bootstrap-path}jumbotron.less";
+@import "@{bootstrap-path}thumbnails.less";
+@import "@{bootstrap-path}alerts.less";
+@import "@{bootstrap-path}progress-bars.less";
+@import "@{bootstrap-path}media.less";
+@import "@{bootstrap-path}list-group.less";
+@import "@{bootstrap-path}panels.less";
+@import "@{bootstrap-path}responsive-embed.less";
+@import "@{bootstrap-path}wells.less";
+@import "@{bootstrap-path}close.less";
+
+// Components w/ JavaScript
+@import "@{bootstrap-path}modals.less";
+
+// Utility classes
+@import "@{bootstrap-path}utilities.less";
+@import "@{bootstrap-path}responsive-utilities.less";
+
+// Bootswatch
+@import "@{bootswatch-path}bootswatch.less";
+/**
+ * App-wide Styles
+ */
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+// injector
+@import 'account/login/login.less';
+@import 'admin/admin.less';
+@import 'main/main.less';
+@import 'note/note.less';
+@import 'modal/modal.less';
+// endinjector
