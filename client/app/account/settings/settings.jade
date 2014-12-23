@@ -30,7 +30,7 @@ div(ng-include='"components/navbar/navbar.html"')
           span.text-muted {{token.token}}
           br
           span.text-muted {{token.createdAt|date:'short'}}
-          a.trash.pointer(ng-click='delete(token)')
+          a.trash.pointer(ng-click='delete(token)', title='Revoke Token')
             span.fa.fa-trash.pull-right
         li.list-group-item(ng-show='!tokens.length')
           span.text-muted No auth tokens

@@ -1,0 +1,4 @@
+form(ng-submit='submitFn()', name='form')
+  textarea.form-control(rows='3', ng-model='model', placeholder='The great thing that happened today was...', required)
+  br
+  button.btn.btn-primary.btn-block(type='submit', ng-disabled='form.$error.required') {{submitText}}

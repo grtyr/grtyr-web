@@ -1,17 +1,19 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 .container
-  div(ng-show='canWrite')
-    form(ng-submit='saveNote()', name='form')
-      textarea.form-control(rows='3', ng-model='note.body', placeholder='The great thing that happened today was...', required)
-      br
-      button.btn.btn-primary.btn-block(type='submit', ng-disabled='form.$error.required') Save
+  div(ng-show='canWrite && !editNote')
+    note-form(submit-fn='saveNote()', model='note.body', submit-text='Save')
+    hr
+  div(ng-show='editNote')
+    note-form(submit-fn='updateNote()', model='editNote.body', submit-text='Update', ng-keyup='checkEsc($event)')
     hr
   ul.list-group
-    li.list-group-item(ng-repeat='note in notes')
+    li.list-group-item(ng-repeat='note in notes', ng-hide='note.id === editNote.id')
       span(ng-bind-html='note.body|nlbr')
       br
       span.text-muted {{note.createdAt|date:'short'}}
+      a.edit.pointer(ng-click='edit(note)', ng-show='note.canEdit', title='Edit Note')
+        span.fa.fa-pencil-square-o.pull-right
     li.list-group-item(ng-show='!notes.length')
       span.text-muted No notes
 

@@ -54,6 +54,7 @@ function hideOldNotes(notes) {
   var i, length = notes.length,
     oneDayAgo = (Date.now() - ONE_DAY_MS);
   for (i = 0; i < length; i++) {
+    notes[i] = notes[i].toJSON();
     notes[i].canEdit = true;
     var d = new Date(notes[i].createdAt).getTime();
     if (d < oneDayAgo) {
@@ -124,4 +125,22 @@ exports.create = function(req, res) {
       return res.status(201).json(note);
     })
     .catch(common.handleError(res));
+};
+
+// Updates a note in the DB.
+exports.update = function(req, res) {
+  Note
+    .findOne({
+      where: sequelize.and({
+        author_id: req.user.id
+      }, {
+        id: req.params.id
+      })
+    }).then(function(note) {
+      if (!note) {
+        return res.send(404);
+      }
+      note.updateAttributes(req.body);
+      res.json(note);
+    });
 };
