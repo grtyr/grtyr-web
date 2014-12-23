@@ -23,6 +23,13 @@ db.User = db.sequelize.import(path.join(
 ));
 
 // Insert models below
+db.Token = db.sequelize.import(path.join(
+  config.root,
+  'server',
+  'api',
+  'token',
+  'token.model'
+));
 db.Note = db.sequelize.import(path.join(
   config.root,
   'server',

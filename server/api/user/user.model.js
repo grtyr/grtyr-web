@@ -230,6 +230,10 @@ module.exports = function(sequelize, DataTypes) {
       foreignKey: 'author_id',
       onDelete: 'CASCADE'
     });
+    models.User.hasMany(models.Token, {
+      foreignKey: 'user_id',
+      onDelete: 'CASCADE'
+    });
   };
 
   return User;

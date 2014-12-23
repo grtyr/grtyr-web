@@ -12,4 +12,6 @@ div(ng-include='"components/navbar/navbar.html"')
       span(ng-bind-html='note.body|nlbr')
       br
       span.text-muted {{note.createdAt|date:'short'}}
+    li.list-group-item(ng-show='!notes.length')
+      span.text-muted No notes
 

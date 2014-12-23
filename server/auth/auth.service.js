@@ -4,7 +4,9 @@ var config = require('../config/environment');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var compose = require('composable-middleware');
-var User = require('../sqldb').User;
+var sqldb = require('../sqldb');
+var User = sqldb.User;
+var Token = sqldb.Token;
 var validateJwt = expressJwt({
   secret: config.secrets.session
 });
@@ -24,11 +26,22 @@ function isAuthenticated() {
     })
     // Attach user to request
     .use(function(req, res, next) {
-      User.find({
+      var isApiReq = req.user.api;
+      var whereObj = {
+        where: {
+          id: req.user.id
+        }
+      };
+      if (isApiReq) {
+        var token = req.headers.authorization.replace('Bearer ', '');
+        whereObj.include = {
+          model: Token,
           where: {
-            id: req.user.id
+            token: token
           }
-        })
+        };
+      }
+      User.find(whereObj)
         .then(function(user) {
           if (!user) {
             return res.send(401);
@@ -78,7 +91,8 @@ function signToken(id) {
  */
 function signApiToken(id) {
   return jwt.sign({
-    id: id
+    id: id,
+    api: true,
   }, config.secrets.session);
 }
 

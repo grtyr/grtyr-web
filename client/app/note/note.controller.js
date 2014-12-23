@@ -4,11 +4,14 @@ angular.module('grtyrApp')
   .controller('NoteCtrl', function($scope, $http) {
     $scope.canWrite = false;
     $scope.notes = [];
+    $scope.years = [];
     $scope.note = {
       body: ''
     };
-    $http.get('/api/notes/canWrite').success(function(data) {
+
+    $http.get('/api/notes/init').success(function(data) {
       $scope.canWrite = data.can;
+      $scope.years = data.years;
     });
     $scope.saveNote = function() {
       $http.post('/api/notes', $scope.note).success(function(note) {

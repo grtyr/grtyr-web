@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('grtyrApp')
-  .controller('NavbarCtrl', function($scope, Auth) {
+  .controller('NavbarCtrl', function($scope, $state, Auth) {
     $scope.menu = [{
       title: 'Home',
       state: 'main'
@@ -10,6 +10,16 @@ angular.module('grtyrApp')
       state: 'note',
       auth: true
     }];
+    $scope.brandSref = 'main';
+    Auth.isLoggedIn(function(is) {
+      if (is) {
+        $scope.brandSref = 'note';
+      }
+    });
+
+    $scope.brandHref = function() {
+      return $state.href($scope.brandSref);
+    };
 
     $scope.isAuthed = function(item) {
       if (!item.auth) {
@@ -21,6 +31,5 @@ angular.module('grtyrApp')
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
-    $scope.isLocal = Auth.isLocal;
     $scope.getCurrentUser = Auth.getCurrentUser;
   });

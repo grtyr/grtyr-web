@@ -1,8 +1,8 @@
 div(ng-include='"components/navbar/navbar.html"')
 .container
-  .row
+  .row(ng-show='isLocal()')
     .col-sm-12
-      h1 Change Password
+      h2 Change Password
     .col-sm-12
       form.form(name='form', ng-submit='changePassword(form)', novalidate='')
         .form-group
@@ -17,5 +17,20 @@ div(ng-include='"components/navbar/navbar.html"')
             | Password must be at least 3 characters.
 
         p.help-block  {{ message }}
-
         button.btn.btn-lg.btn-primary(type='submit') Save changes
+      hr
+  .row
+    .col-sm-12
+      h2 Auth Tokens
+    .col-sm-12
+      ul.list-group
+        li.list-group-item(ng-repeat='token in tokens')
+          strong {{token.useragent}}
+          br
+          span.text-muted {{token.token}}
+          br
+          span.text-muted {{token.createdAt|date:'short'}}
+          a.trash.pointer(ng-click='delete(token)')
+            span.fa.fa-trash.pull-right
+        li.list-group-item(ng-show='!tokens.length')
+          span.text-muted No auth tokens
