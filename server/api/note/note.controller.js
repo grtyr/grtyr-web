@@ -20,6 +20,38 @@ function canWrite(user, cb) {
     });
 }
 
+function flattenDate(date) {
+  var d = new Date(date);
+  d.setHours(12, 0, 0, 0)
+  return d.getTime();
+}
+
+function findLongestStreak(notes) {
+  var dates = [],
+    len = notes.length,
+    i;
+  for (i = 0; i < len; i++) {
+    dates.push(flattenDate(notes[i].createdAt));
+  }
+  var k = 0,
+    sorted = [
+      []
+    ];
+  dates.sort()
+    .forEach(function(val, idx) {
+      var a = val,
+        b = dates[idx + 1] || 0;
+      sorted[k].push(+a);
+      if ((+b - +a) > 86400000) {
+        sorted[++k] = []
+      }
+    });
+    sorted.sort(function(a, b) {
+      return a.length > b.length ? -1 : 1;
+    });
+  return sorted[0].length;
+}
+
 // Gets list of notes from the DB.
 exports.index = function(req, res) {
   Note
@@ -48,7 +80,10 @@ exports.mine = function(req, res) {
       order: 'createdAt DESC'
     })
     .success(function(notes) {
-      return res.json(notes);
+      return res.json({
+        streak: findLongestStreak(notes),
+        notes: notes
+      });
     });
 };
 

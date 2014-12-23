@@ -18,7 +18,7 @@ angular.module('grtyrApp')
       });
     };
 
-    $http.get('/api/notes/mine').success(function(notes) {
-      $scope.notes = notes;
+    $http.get('/api/notes/mine').success(function(data) {
+      $scope.notes = data.notes;
     });
   });
