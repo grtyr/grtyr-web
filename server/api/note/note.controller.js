@@ -7,18 +7,6 @@ var common = require('../common/controller');
 var ONE_DAY = (60 * 60 * 24),
   ONE_DAY_MS = (ONE_DAY * 1000);
 
-function canWrite(user, cb) {
-  Note
-    .count({
-      where: sequelize.and({
-        author_id: user.id
-      }, ['date(`createdAt`) = CURRENT_DATE'])
-    })
-    .success(function(count) {
-      cb((count === 0));
-    });
-}
-
 function flattenDate(date) {
   var d = new Date(date);
   d.setHours(12, 0, 0, 0)
@@ -107,12 +95,7 @@ exports.init = function(req, res) {
       ]
     })
     .success(function(years) {
-      canWrite(req.user, function(can) {
-        res.json({
-          can: can,
-          years: years
-        });
-      });
+      res.json(years);
     });
 };
 
@@ -122,6 +105,8 @@ exports.create = function(req, res) {
   Note
     .create(req.body)
     .then(function(note) {
+      note = note.toJSON();
+      note.canEdit = true;
       return res.status(201).json(note);
     })
     .catch(common.handleError(res));

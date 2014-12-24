@@ -2,8 +2,6 @@
 
 angular.module('grtyrApp')
   .controller('NoteCtrl', function($scope, $http) {
-    var __canWrite;
-    $scope.canWrite = false;
     $scope.notes = [];
     $scope.years = [];
     $scope.note = {
@@ -11,19 +9,15 @@ angular.module('grtyrApp')
     };
     $scope.editNote = null;
 
-    $http.get('/api/notes/init').success(function(data) {
-      $scope.canWrite = data.can;
-      $scope.years = data.years;
+    $http.get('/api/notes/init').success(function(years) {
+      $scope.years = years;
     });
 
     function resetEdit() {
-      $scope.canWrite = __canWrite;
       $scope.editNote = null;
     }
 
     $scope.edit = function(note) {
-      __canWrite = $scope.canWrite;
-      $scope.canWrite = false;
       $scope.editNote = angular.copy(note);
     };
 
@@ -46,7 +40,6 @@ angular.module('grtyrApp')
 
     $scope.saveNote = function() {
       $http.post('/api/notes', $scope.note).success(function(note) {
-        $scope.canWrite = false;
         $scope.note.body = '';
         $scope.notes.unshift(note);
       });
