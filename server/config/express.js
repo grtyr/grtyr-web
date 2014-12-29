@@ -43,6 +43,12 @@ module.exports = function(app) {
   if ('production' === env) {
     app.use(express.static(app.get('appPath')));
     app.use(morgan('dev'));
+    app.use(function(req, res, next) {
+      if (req.headers['x-forwarded-proto'] === 'https') {
+        return next();
+      }
+      res.redirect('https://' + req.headers.host + req.url);
+    });
   }
 
   if ('development' === env || 'test' === env) {
