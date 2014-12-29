@@ -8,6 +8,6 @@ module.exports = {
     uri: 'mongodb://localhost/grtyr-dev'
   },
   sequelize: {
-    uri: 'mysql://root:root@localhost:3306/grtyr-dev'
+    uri: 'mysql://root:@localhost:3306/grtyr-dev'
   }
 };

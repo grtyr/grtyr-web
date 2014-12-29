@@ -6,6 +6,7 @@ angular.module('grtyrApp')
       .state('note', {
         url: '/write',
         templateUrl: 'app/note/note.html',
-        controller: 'NoteCtrl'
+        controller: 'NoteCtrl',
+        title: 'Write'
       });
   });

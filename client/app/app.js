@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('grtyrApp', [
-    'ngCookies',
-    'ngResource',
-    'ngSanitize',
-    'ui.router',
-    'ui.bootstrap'
-  ])
+  'ngCookies',
+  'ngResource',
+  'ngSanitize',
+  'ui.router',
+  'ui.bootstrap'
+])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
       .otherwise('/');
@@ -43,7 +43,16 @@ angular.module('grtyrApp', [
 
 .run(function($rootScope, $state, Auth) {
   // Redirect to login if route requires auth and you're not logged in
+  $rootScope.pageTitle = '';
   $rootScope.$on('$stateChangeStart', function(event, next) {
+    var appName = 'Great Year';
+    var title = next.title;
+    if (title) {
+      title += (' - ' + appName);
+    } else {
+      title = appName;
+    }
+    $rootScope.pageTitle = title;
     Auth.isLoggedIn(function(loggedIn) {
       if (next.authenticate && !loggedIn) {
         $state.go('login');

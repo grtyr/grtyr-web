@@ -6,7 +6,8 @@ angular.module('grtyrApp')
       .state('login', {
         url: '/login',
         templateUrl: 'app/account/login/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        title: 'Login'
       })
       .state('logout', {
         url: '/logout?referrer',
@@ -23,13 +24,15 @@ angular.module('grtyrApp')
       .state('signup', {
         url: '/signup',
         templateUrl: 'app/account/signup/signup.html',
-        controller: 'SignupCtrl'
+        controller: 'SignupCtrl',
+        title: 'Sign Up'
       })
       .state('settings', {
         url: '/settings',
         templateUrl: 'app/account/settings/settings.html',
         controller: 'SettingsCtrl',
-        authenticate: true
+        authenticate: true,
+        title: 'Settings'
       });
   })
   .run(function($rootScope) {
