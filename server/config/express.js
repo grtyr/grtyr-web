@@ -43,11 +43,15 @@ module.exports = function(app) {
   if ('production' === env) {
     app.use(express.static(app.get('appPath')));
     app.use(morgan('dev'));
+    var wwwRegex = /^www/;
     app.use(function(req, res, next) {
-      if (req.headers['x-forwarded-proto'] === 'https') {
-        return next();
+      if (req.headers['x-forwarded-proto'] !== 'https') {
+        return res.redirect('https://' + req.headers.host + req.url);
       }
-      res.redirect('https://' + req.headers.host + req.url);
+      if (req.headers.host.match(wwwRegex) !== null) {
+        return res.redirect('https://' + req.headers.host.replace(/^www\./, '') + req.url);
+      }
+      next();
     });
   }
 
