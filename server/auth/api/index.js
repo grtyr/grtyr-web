@@ -11,13 +11,20 @@ router.post('/', auth.isAuthenticated(), function(req, res, next) {
   console.log(req.headers);
   var token = auth.signApiToken(user_id);
   Token
-    .create({
-      token: token,
-      user_id: user_id,
-      useragent: (req.headers['user-agent'] || '')
+    .findOrCreate({
+      where: {
+        user_id: user_id,
+        useragent: (req.headers['user-agent'] || '')
+      },
+      defaults: {
+        token: token
+      }
     })
     .then(function(token) {
-      return res.status(201).json(token);
+      var created = token[1];
+      token = token[0];
+      var status = (created) ? 201 : 200;
+      return res.status(status).json(token);
     })
     .catch(function(err) {
       next(err);
