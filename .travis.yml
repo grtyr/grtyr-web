@@ -13,6 +13,7 @@ deploy:
     secure: J9qDaD9SbRoM+3OgSyMb0p7yh/Lk0ZTUFCVFyiHckm2g5s7mdwxgA6aRkIzqgzWkAQ3M8gX9cBmg6q5XtkcNo0bucZTa+OhGPOuSCAlp5TFA7KbpQkHer3Y4FyCwedx+ONVb7eYZukZbWIpFcsMEomyV1zDS8n4wvI4FIv7xv54=
   app: grtyr
   domain: connyay
+  node: '0.10'
   on:
     repo: grtyr/grtyr-web
 sudo: false
