@@ -1,15 +1,58 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-header#banner.hero-unit
+.intro-header
   .container
-    h1 'Allo, 'Allo!
-
-
-footer.footer
+    .row
+      .col-lg-12
+        .intro-message
+          h1 Great Year
+.content-section-a
   .container
-    p
-      | GrtYr
-      = ' | '
-      a(href='https://twitter.com/grtyrapp', target='_blank') @grtyrapp
-      = ' | '
-      a(href='https://github.com/grtyr/feedback/issues', target='_blank') Feedback
+    .row
+      .col-lg-5.col-sm-6
+        hr.section-heading-spacer
+        .clearfix
+        h2.section-heading Lorem Ipsum
+        p.lead
+          | Fusce semper scelerisque viverra. Nullam efficitur ipsum elit, porttitor mollis nulla blandit vitae.
+      .col-lg-5.col-lg-offset-2.col-sm-6
+        img.img-responsive(src='/assets/img/ipad.png', alt='')
+.content-section-b
+  .container
+    .row
+      .col-lg-5.col-lg-offset-1.col-sm-push-6.col-sm-6
+        hr.section-heading-spacer
+        .clearfix
+        h2.section-heading Lorem Ipsum
+        p.lead
+          | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean metus sapien, suscipit eget lacus vitae, feugiat sodales neque. 
+      .col-lg-5.col-sm-pull-6.col-sm-6
+        img.img-responsive(src='/assets/img/ipad.png', alt='')
+.banner
+  .container
+    .row
+      .col-lg-6
+        h2 Connect to GrtYr
+      .col-lg-6
+        ul.list-inline.banner-social-buttons
+          li
+            a.btn.btn-default.btn-lg(href='https://twitter.com/grtyrapp', target='_blank')
+              i.fa.fa-twitter.fa-fw
+              span.network-name grtyrapp
+          li
+            a.btn.btn-default.btn-lg(href='https://github.com/grtyr/feedback/issues', target='_blank')
+              i.fa.fa-github.fa-fw
+              span.network-name Github
+footer
+  .container
+    .row.text-right
+      .col-lg-12
+        ul.list-inline
+          li
+            a(href='#') GrtYr
+          li.footer-menu-divider ⋅
+          li
+            a(href='#') About
+          li.footer-menu-divider ⋅
+          li
+            a(href='#') Contact
