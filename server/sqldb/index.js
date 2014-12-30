@@ -11,7 +11,7 @@ var Sequelize = require('sequelize');
 
 var db = {
   Sequelize: Sequelize,
-  sequelize: new Sequelize(config.sequelize.uri)
+  sequelize: new Sequelize(config.sequelize.uri, config.sequelize.options)
 };
 
 db.User = db.sequelize.import(path.join(

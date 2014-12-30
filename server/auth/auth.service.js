@@ -44,7 +44,7 @@ function isAuthenticated() {
       User.find(whereObj)
         .then(function(user) {
           if (!user) {
-            return res.send(401);
+            return res.status(401).end()
           }
           req.user = user;
           next();
@@ -70,7 +70,7 @@ function hasRole(roleRequired) {
         config.userRoles.indexOf(roleRequired)) {
         next();
       } else {
-        res.send(403);
+        res.status(403).end()
       }
     });
 }
@@ -101,7 +101,7 @@ function signApiToken(id) {
  */
 function setTokenCookie(req, res) {
   if (!req.user) {
-    return res.json(404, {
+    return res.status(404).json({
       message: 'Something went wrong, please try again.'
     });
   }

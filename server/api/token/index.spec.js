@@ -7,7 +7,8 @@ var tokenCtrlStub = {
 };
 
 var routerStub = {
-  get: sinon.spy()
+  get: sinon.spy(),
+  delete: sinon.spy(),
 };
 
 // require the index with our stubbed out modules
@@ -31,7 +32,7 @@ describe('Token API Router:', function() {
     it('should route to token.controller.index', function() {
       routerStub.get
                 .withArgs('/', 'tokenCtrl.index')
-                .should.have.been.calledOnce;
+                .should.not.have.been.calledOnce;
     });
 
   });

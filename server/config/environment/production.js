@@ -16,7 +16,9 @@ module.exports = {
   // MongoDB connection options
   sequelize: {
     uri: process.env.OPENSHIFT_MYSQL_DB_URL + process.env.OPENSHIFT_APP_NAME,
-    options: {}
+    options: {
+      logging: true
+    }
   },
   mongo: {
     uri: process.env.MONGOLAB_URI ||

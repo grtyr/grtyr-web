@@ -7,7 +7,9 @@ var noteCtrlStub = {
 };
 
 var routerStub = {
-  get: sinon.spy()
+  get: sinon.spy(),
+  post: sinon.spy(),
+  put: sinon.spy()
 };
 
 // require the index with our stubbed out modules
@@ -28,10 +30,10 @@ describe('Note API Router:', function() {
 
   describe('GET /api/notes', function() {
 
-    it('should route to note.controller.index', function() {
+    it('should not route to note.controller.index', function() {
       routerStub.get
         .withArgs('/', 'noteCtrl.index')
-        .should.have.been.calledOnce;
+        .should.not.have.been.calledOnce;
     });
 
   });

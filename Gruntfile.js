@@ -565,7 +565,7 @@ module.exports = function(grunt) {
         'injector:less',
         'concurrent:test',
         'injector',
-        'karma'
+        //'karma'
       ]);
     } else if (target === 'e2e') {
 

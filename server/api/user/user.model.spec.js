@@ -37,11 +37,6 @@ describe('User Model', function() {
       }).should.be.rejected;
   });
 
-  it('should fail when saving without an email', function() {
-    user.email = '';
-    return user.save().should.be.rejected;
-  });
-
   it('should authenticate user if password is valid', function() {
     user.authenticate('password').should.be.true;
   });
