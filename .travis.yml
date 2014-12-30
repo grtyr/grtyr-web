@@ -1,7 +1,16 @@
 language: node_js
 node_js:
-  - '0.10'
-  - '0.11'
+- '0.10'
+- '0.11'
 before_script:
-  - npm install -g bower grunt-cli
-  - bower install
+- npm install -g bower grunt-cli
+- bower install
+deploy:
+  provider: openshift
+  user: conn.hindley@gmail.com
+  password:
+    secure: J9qDaD9SbRoM+3OgSyMb0p7yh/Lk0ZTUFCVFyiHckm2g5s7mdwxgA6aRkIzqgzWkAQ3M8gX9cBmg6q5XtkcNo0bucZTa+OhGPOuSCAlp5TFA7KbpQkHer3Y4FyCwedx+ONVb7eYZukZbWIpFcsMEomyV1zDS8n4wvI4FIv7xv54=
+  app: grtyr
+  domain: connyay
+  on:
+    repo: grtyr/grtyr-web
