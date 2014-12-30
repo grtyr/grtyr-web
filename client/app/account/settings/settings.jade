@@ -27,7 +27,7 @@ div(ng-include='"components/navbar/navbar.html"')
         li.list-group-item(ng-repeat='token in tokens')
           strong {{token.useragent}}
           br
-          span.text-muted {{token.token}}
+          span.text-muted.auth-token {{token.token}}
           br
           span.text-muted {{token.createdAt|date:'short'}}
           a.trash.pointer(ng-click='delete(token)', title='Revoke Token')
