@@ -18,7 +18,7 @@ exports.setup = function(User, config) {
           if (!user) {
             user = User.build({
               name: profile.displayName,
-              username: profile.username,
+              email: '@' + profile.username,
               role: 'user',
               provider: 'twitter',
               twitter: profile.id
