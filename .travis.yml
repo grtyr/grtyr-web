@@ -15,3 +15,4 @@ deploy:
   domain: connyay
   on:
     repo: grtyr/grtyr-web
+sudo: false
