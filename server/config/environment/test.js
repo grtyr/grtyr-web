@@ -8,13 +8,6 @@ module.exports = {
     uri: 'mongodb://localhost/grtyr-test'
   },
   sequelize: {
-    uri: 'sqlite://',
-    options: {
-      logging: false,
-      storage: 'test.sqlite',
-      define: {
-        timestamps: false
-      }
-    }
+    uri: 'mysql://root:@localhost:3306/grtyr-test'
   }
 };
