@@ -9,21 +9,12 @@ exports.up = function(db, callback) {
       primaryKey: true,
       autoIncrement: true
     },
-    body: {
-      type: type.STRING
-    },
-    user_id: {
-      type: type.INTEGER
-    },
-    category_id: {
-      type: type.INTEGER
-    },
-    created_at: {
-      type: type.TIMESTAMP
-    },
-    updated_at: {
-      type: type.TIMESTAMP
-    }
+    body: type.STRING,
+    user_id: type.INTEGER,
+    jar_id: type.INTEGER,
+    category_id: type.INTEGER,
+    created_at: type.TIMESTAMP,
+    updated_at: type.TIMESTAMP
   }, callback);
 };
 

@@ -9,9 +9,7 @@ exports.up = function(db, callback) {
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
-      type: type.STRING
-    },
+    name: type.STRING,
     email: {
       type: type.STRING,
       unique: true
@@ -20,33 +18,15 @@ exports.up = function(db, callback) {
       type: type.STRING,
       defaultValue: 'user'
     },
-    password: {
-      type: type.STRING
-    },
-    provider: {
-      type: type.STRING
-    },
-    salt: {
-      type: type.STRING
-    },
-    facebook: {
-      type: type.STRING
-    },
-    twitter: {
-      type: type.STRING
-    },
-    google: {
-      type: type.STRING
-    },
-    github: {
-      type: type.STRING
-    },
-    created_at: {
-      type: type.TIMESTAMP
-    },
-    updated_at: {
-      type: type.TIMESTAMP
-    }
+    password: type.STRING,
+    provider: type.STRING,
+    salt: type.STRING,
+    facebook: type.STRING,
+    twitter: type.STRING,
+    google: type.STRING,
+    github: type.STRING,
+    created_at: type.TIMESTAMP,
+    updated_at: type.TIMESTAMP
   }, callback);
 };
 

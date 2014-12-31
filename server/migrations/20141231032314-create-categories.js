@@ -9,9 +9,7 @@ exports.up = function(db, callback) {
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
-      type: type.STRING
-    }
+    name: type.STRING
   }, callback);
 };
 

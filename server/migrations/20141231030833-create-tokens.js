@@ -9,21 +9,11 @@ exports.up = function(db, callback) {
       primaryKey: true,
       autoIncrement: true
     },
-    token: {
-      type: type.STRING
-    },
-    user_id: {
-      type: type.INTEGER
-    },
-    useragent: {
-      type: type.STRING
-    },
-    created_at: {
-      type: type.TIMESTAMP
-    },
-    updated_at: {
-      type: type.TIMESTAMP
-    }
+    token: type.STRING,
+    user_id: type.INTEGER,
+    useragent: type.STRING,
+    created_at: type.TIMESTAMP,
+    updated_at: type.TIMESTAMP
   }, callback);
 };
 
