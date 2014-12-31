@@ -37,6 +37,13 @@ db.Note = db.sequelize.import(path.join(
   'note',
   'note.model'
 ));
+db.Category = db.sequelize.import(path.join(
+  config.root,
+  'server',
+  'api',
+  'note',
+  'note.category.model'
+));
 
 Object.keys(db).forEach(function(modelName) {
   if ('associate' in db[modelName]) {

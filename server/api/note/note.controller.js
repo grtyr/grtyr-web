@@ -3,6 +3,7 @@
 var sqldb = require('../../sqldb');
 var sequelize = sqldb.sequelize;
 var Note = sqldb.Note;
+var Category = sqldb.Category;
 var common = require('../common/controller');
 var ONE_DAY = (60 * 60 * 24),
   ONE_DAY_MS = (ONE_DAY * 1000);
@@ -70,6 +71,7 @@ exports.mine = function(req, res) {
       where: {
         author_id: req.user.id
       },
+      include: Category,
       order: 'createdAt DESC'
     })
     .success(function(notes) {
