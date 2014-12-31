@@ -32,7 +32,7 @@ exports.mine = function(req, res) {
         model: Jar,
         include: {
           model: Note,
-          attributes: ['id', 'body', 'created_at'],
+          attributes: ['id', 'body', 'category_id', 'jar_id', 'created_at'],
           include: {
             model: User,
             attributes: userAttrs

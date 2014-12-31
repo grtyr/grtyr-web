@@ -5,11 +5,6 @@ angular.module('grtyrApp')
     return {
       templateUrl: 'components/jarTabs/jarTabs.html',
       restrict: 'EA',
-      scope: {
-        submitFn: '&',
-        note: '=',
-        submitText: '@'
-      },
       controller: function($scope) {
         $scope.jars = Jars.mine;
         $scope.newJarForm = false;

@@ -13,6 +13,14 @@ angular.module('grtyrApp')
       $scope.editNote = null;
     }
 
+    function resetNote(jar) {
+      $scope.note = {
+        body: '',
+        category_id: 1,
+        jar_id: jar
+      };
+    }
+
     $scope.edit = function(note) {
       $scope.editNote = angular.copy(note);
     };
@@ -25,17 +33,15 @@ angular.module('grtyrApp')
 
     $scope.updateNote = function() {
       $http.put('/api/notes/' + $scope.editNote.id, $scope.editNote).success(function(note) {
-        angular.forEach($scope.notes, function(n) {
-          if (n.id === note.id) {
-            n.body = note.body;
-            n.category_id = note.category_id;
-          }
-        });
+        Jars.updateNote(note);
         resetEdit();
       });
     };
 
     $scope.saveNote = function() {
-      $http.post('/api/notes', $scope.note).success(Jars.addNote);
+      $http.post('/api/notes', $scope.note).success(function(note) {
+        Jars.addNote(note);
+        resetNote(note.jar_id);
+      });
     };
   });

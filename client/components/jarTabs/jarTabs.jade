@@ -1,6 +1,6 @@
 tabset
   tab(ng-repeat="jar in jars" heading="{{jar.name}}", active='$first')
     br
-    note-list(notes='jar.Notes', edit-note='editNote', edit-fn='editNote(note)')
+    note-list(notes='jar.Notes', edit-note='editNote', edit-fn='edit')
   tab(heading="New Jar", active="newJarForm")
     // New Jar Form Here
