@@ -23,6 +23,13 @@ db.User = db.sequelize.import(path.join(
 ));
 
 // Insert models below
+db.Category = db.sequelize.import(path.join(
+  config.root,
+  'server',
+  'api',
+  'category',
+  'category.model'
+));
 db.Token = db.sequelize.import(path.join(
   config.root,
   'server',
@@ -41,8 +48,8 @@ db.Category = db.sequelize.import(path.join(
   config.root,
   'server',
   'api',
-  'note',
-  'note.category.model'
+  'category',
+  'category.model'
 ));
 
 Object.keys(db).forEach(function(modelName) {
