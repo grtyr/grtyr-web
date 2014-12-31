@@ -3,16 +3,11 @@
 angular.module('grtyrApp')
   .controller('NoteCtrl', function($scope, $http) {
     $scope.notes = [];
-    $scope.years = [];
     $scope.note = {
       body: '',
       category_id: 1
     };
     $scope.editNote = null;
-
-    $http.get('/api/notes/init').success(function(years) {
-      $scope.years = years;
-    });
 
     function resetEdit() {
       $scope.editNote = null;
