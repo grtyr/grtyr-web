@@ -7,5 +7,6 @@ var router = express.Router();
 
 router.get('/', auth.hasRole('admin'), controller.index);
 router.get('/mine', auth.isAuthenticated(), controller.mine);
+router.post('/', auth.isAuthenticated(), controller.create);
 
 module.exports = router;

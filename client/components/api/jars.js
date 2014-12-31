@@ -45,7 +45,7 @@ angular.module('grtyrApp')
         });
       },
       addJar: function(jar) {
-
+        _jars.push(jar);
       },
       updateJar: function(jar) {
 

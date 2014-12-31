@@ -1,0 +1,9 @@
+br
+form(ng-submit='create()', name='form')
+  label.control-label Name
+  input.form-control(type='text', ng-model='jar.name', required)
+  br
+  label.control-label Description
+  input.form-control(type='text', ng-model='jar.description')
+  br
+  button.btn.btn-primary.btn-block(type='submit', ng-disabled='form.$error.required') Create

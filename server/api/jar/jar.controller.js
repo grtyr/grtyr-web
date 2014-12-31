@@ -49,3 +49,12 @@ exports.mine = function(req, res) {
       return res.json(jars);
     });
 };
+
+// Creates a new jar in the DB.
+exports.create = function(req, res) {
+  req.user.createJar(req.body).success(function(jar) {
+    jar = jar.toJSON();
+    jar.Notes = [];
+    res.json(jar);
+  })
+};
