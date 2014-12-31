@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('grtyrApp')
-  .directive('noteForm', function(Categories) {
+  .directive('jarTabs', function(Jars) {
     return {
-      templateUrl: 'app/note/directives/noteForm/noteForm.html',
+      templateUrl: 'components/jarTabs/jarTabs.html',
       restrict: 'EA',
       scope: {
         submitFn: '&',
@@ -11,7 +11,8 @@ angular.module('grtyrApp')
         submitText: '@'
       },
       controller: function($scope) {
-        $scope.categories = Categories.query();
+        $scope.jars = Jars.mine;
+        $scope.newJarForm = false;
       }
     };
   });

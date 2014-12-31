@@ -13,14 +13,14 @@ var common = require('../common/controller');
  */
 exports.index = function(req, res) {
   User.findAll({
-      attributes: [
-        'id',
-        'name',
-        'email',
-        'role',
-        'provider'
-      ]
-    })
+    attributes: [
+      'id',
+      'name',
+      'email',
+      'role',
+      'provider'
+    ]
+  })
     .then(function(users) {
       res.json(200, users);
     })
@@ -55,10 +55,10 @@ exports.show = function(req, res, next) {
   var userId = req.params.id;
 
   User.find({
-      where: {
-        id: userId
-      }
-    })
+    where: {
+      id: userId
+    }
+  })
     .then(function(user) {
       if (!user) {
         return res.send(404);
@@ -76,8 +76,8 @@ exports.show = function(req, res, next) {
  */
 exports.destroy = function(req, res) {
   User.destroy({
-      id: req.params.id
-    })
+    id: req.params.id
+  })
     .then(common.respondWith(res, 204))
     .catch(common.handleError(res));
 };
@@ -91,10 +91,10 @@ exports.changePassword = function(req, res) {
   var newPass = String(req.body.newPassword);
 
   User.find({
-      where: {
-        id: userId
-      }
-    })
+    where: {
+      id: userId
+    }
+  })
     .then(function(user) {
       if (user.authenticate(oldPass)) {
         user.password = newPass;
@@ -111,21 +111,21 @@ exports.changePassword = function(req, res) {
  * Get my info
  */
 exports.me = function(req, res, next) {
-  var userId = req.user.id;
-
+  if (req.user && req.user.username && req.user.shortname) {
+    return res.json(req.user);
+  }
   User.find({
-      where: {
-        id: userId
-      },
-      include: Jar,
-      attributes: [
-        'id',
-        'name',
-        'email',
-        'role',
-        'provider'
-      ]
-    })
+    where: {
+      id: req.user.id
+    },
+    attributes: [
+      'id',
+      'name',
+      'email',
+      'role',
+      'provider'
+    ]
+  })
     .then(function(user) { // don't ever give out the password or salt
       if (!user) {
         return res.json(401);

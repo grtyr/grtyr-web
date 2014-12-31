@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('grtyrApp')
-  .controller('NoteCtrl', function($scope, $http) {
+  .controller('NoteCtrl', function($scope, $http, Jars) {
     $scope.notes = [];
     $scope.note = {
       body: '',
@@ -36,13 +36,6 @@ angular.module('grtyrApp')
     };
 
     $scope.saveNote = function() {
-      $http.post('/api/notes', $scope.note).success(function(note) {
-        $scope.note.body = '';
-        $scope.notes.unshift(note);
-      });
+      $http.post('/api/notes', $scope.note).success(Jars.addNote);
     };
-
-    $http.get('/api/notes/mine').success(function(data) {
-      $scope.notes = data.notes;
-    });
   });

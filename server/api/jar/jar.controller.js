@@ -4,6 +4,13 @@ var User = sqldb.User;
 var Note = sqldb.Note;
 var Jar = sqldb.Jar;
 
+function stripBody(notes) {
+  notes.forEach(function(note) {
+    note.body = note._body;
+    delete note._body;
+  });
+}
+
 // Gets list of jars from the DB.
 exports.index = function(req, res) {
   Jar
@@ -23,17 +30,22 @@ exports.mine = function(req, res) {
       attributes: userAttrs,
       include: {
         model: Jar,
-        attributes: ['id', 'name', 'description'],
         include: {
           model: Note,
+          attributes: ['id', 'body', 'created_at'],
           include: {
             model: User,
-            attributes: userAttrs,
-          },
+            attributes: userAttrs
+          }
         }
       }
     })
     .success(function(user) {
-      return res.json(user.Jars);
+      var jars = user.Jars;
+      jars.forEach(function(jar) {
+        jar.Notes.reverse();
+        stripBody(jar.Notes);
+      });
+      return res.json(jars);
     });
 };

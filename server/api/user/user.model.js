@@ -54,7 +54,7 @@ module.exports = function(sequelize, DataTypes) {
       // Non-sensitive info we'll be putting in the token
       token: function() {
         return {
-          '_id': this._id,
+          'id': this.id,
           'role': this.role
         };
       }

@@ -1,0 +1,9 @@
+ul.list-group
+  li.note-item.list-group-item(ng-repeat='note in notes', ng-class="{'disabled': (note.id === editNote.id)}")
+    span(ng-bind-html='note.body|nlbr')
+    br
+    span.text-muted {{note.created_at|date:'short'}}
+    a.edit.pointer(ng-click='editFn(note)', ng-show='note.canEdit', title='Edit Note')
+      span.fa.fa-pencil-square-o.pull-right
+  li.list-group-item(ng-show='!notes.length')
+    span.text-muted No notes
