@@ -18,7 +18,7 @@ function findLongestStreak(notes) {
   var dates = [],
     len = notes.length;
   for (var i = 0; i < len; i++) {
-    dates.push(flattenDate(notes[i].createdAt));
+    dates.push(flattenDate(notes[i].created_at));
   }
   var k = 0,
     sorted = [
@@ -45,7 +45,7 @@ function hideOldNotes(notes) {
   for (i = 0; i < length; i++) {
     notes[i] = notes[i].toJSON();
     notes[i].canEdit = true;
-    var d = new Date(notes[i].createdAt).getTime();
+    var d = new Date(notes[i].created_at).getTime();
     if (d < oneDayAgo) {
       notes[i].body = '...';
       notes[i].canEdit = false;
@@ -58,7 +58,7 @@ function hideOldNotes(notes) {
 exports.index = function(req, res) {
   Note
     .findAll({
-      order: 'createdAt DESC'
+      order: 'created_at DESC'
     })
     .success(function(notes) {
       return res.json(notes);
@@ -72,7 +72,7 @@ exports.mine = function(req, res) {
         author_id: req.user.id
       },
       include: Category,
-      order: 'createdAt DESC'
+      order: 'created_at DESC'
     })
     .success(function(notes) {
       return res.json({
@@ -83,7 +83,7 @@ exports.mine = function(req, res) {
 };
 
 exports.init = function(req, res) {
-  var yearFn = sequelize.fn('year', sequelize.col('createdAt')),
+  var yearFn = sequelize.fn('year', sequelize.col('created_at')),
     countFn = sequelize.fn('count', sequelize.col('*'));
   Note
     .findAll({

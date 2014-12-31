@@ -9,7 +9,7 @@ var common = require('../common/controller');
 exports.index = function(req, res) {
   Token
     .findAll({
-      order: 'createdAt DESC'
+      order: 'created_at DESC'
     })
     .success(function(tokens) {
       return res.json(tokens);
@@ -38,7 +38,7 @@ exports.mine = function(req, res) {
       where: {
         user_id: req.user.id
       },
-      order: 'createdAt DESC'
+      order: 'created_at DESC'
     })
     .success(function(tokens) {
       return res.json(tokens);
