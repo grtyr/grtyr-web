@@ -75,10 +75,7 @@ exports.mine = function(req, res) {
       order: 'created_at DESC'
     })
     .success(function(notes) {
-      return res.json({
-        streak: findLongestStreak(notes),
-        notes: hideOldNotes(notes)
-      });
+      return res.json(hideOldNotes(notes));
     });
 };
 

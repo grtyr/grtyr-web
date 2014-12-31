@@ -29,7 +29,7 @@ div(ng-include='"components/navbar/navbar.html"')
           br
           span.text-muted.auth-token {{token.token}}
           br
-          span.text-muted {{token.createdAt|date:'short'}}
+          span.text-muted {{token.created_at|date:'short'}}
           a.trash.pointer(ng-click='delete(token)', title='Revoke Token')
             span.fa.fa-trash.pull-right
         li.list-group-item(ng-show='!tokens.length')

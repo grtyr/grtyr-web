@@ -5,4 +5,7 @@ form(ng-submit='submitFn()', name='form')
   label.control-label Category
   select.form-control(ng-options='item.id as item.name for item in categories', ng-model='note.category_id', required)
   br
+  label.control-label Jar
+  select.form-control(ng-options='item.id as item.name for item in jars', ng-model='note.jar_id', required)
+  br
   button.btn.btn-primary.btn-block(type='submit', ng-disabled='form.$error.required') {{submitText}}

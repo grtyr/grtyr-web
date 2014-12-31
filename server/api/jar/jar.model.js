@@ -14,6 +14,7 @@ module.exports = function(sequelize, DataTypes) {
 
   Jar.associate = function(models) {
     models.Jar.belongsToMany(models.User);
+    models.Jar.hasMany(models.Note);
   };
 
   return Jar;
