@@ -14,6 +14,7 @@ deploy:
   app: grtyr
   domain: connyay
   on:
+    branch: production
     node: '0.10'
     repo: grtyr/grtyr-web
 sudo: false
