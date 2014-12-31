@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('grtyrApp')
-  .factory('Auth', function Auth($http, User, $cookieStore, $q) {
+  .factory('Auth', function Auth($rootScope, $http, User, $cookieStore, $q) {
     /**
      * Return a callback or noop function
      *
@@ -36,6 +36,7 @@ angular.module('grtyrApp')
             $cookieStore.put('token', res.data.token);
             currentUser = User.get();
             safeCb(callback)();
+            $rootScope.$emit('loggedIn');
             return res.data;
           }, function(err) {
             this.logout();
@@ -50,6 +51,7 @@ angular.module('grtyrApp')
       logout: function() {
         $cookieStore.remove('token');
         currentUser = {};
+        $rootScope.$emit('loggedOut');
       },
 
       /**
@@ -64,6 +66,7 @@ angular.module('grtyrApp')
           function(data) {
             $cookieStore.put('token', data.token);
             currentUser = User.get();
+            $rootScope.$emit('loggedIn');
             return safeCb(callback)(null, user);
           },
           function(err) {

@@ -7,6 +7,7 @@ angular.module('grtyrApp')
         url: '/admin',
         templateUrl: 'app/admin/admin.html',
         controller: 'AdminCtrl',
-        title: 'Admin'
+        title: 'Admin',
+        authenticate: true
       });
   });

@@ -1,12 +1,28 @@
 'use strict';
 
 angular.module('grtyrApp')
-  .factory('Jars', function($http) {
+  .factory('Jars', function($rootScope, Auth, $http) {
     var BASE_URL = '/api/jars';
     var _jars = [];
-    $http.get(BASE_URL + '/mine').success(function(jars) {
-      Array.prototype.push.apply(_jars, jars);
+
+    function initialize() {
+      $http.get(BASE_URL + '/mine').success(function(jars) {
+        Array.prototype.push.apply(_jars, jars);
+      });
+    }
+
+    function clear() {
+      while (_jars.length > 0) {
+        _jars.pop();
+      }
+    }
+    Auth.isLoggedIn(function(is) {
+      if (is) {
+        return initialize();
+      }
     });
+    $rootScope.$on('loggedIn', initialize);
+    $rootScope.$on('loggedOut', clear);
     return {
       mine: _jars,
       addNote: function(note) {

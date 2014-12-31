@@ -7,6 +7,7 @@ angular.module('grtyrApp')
         url: '/write',
         templateUrl: 'app/note/note.html',
         controller: 'NoteCtrl',
-        title: 'Write'
+        title: 'Write',
+        authenticate: true
       });
   });
