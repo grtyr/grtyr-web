@@ -13,6 +13,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    jar_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     category_id: {
       type: DataTypes.INTEGER
     }
@@ -20,6 +24,7 @@ module.exports = function(sequelize, DataTypes) {
 
   Note.associate = function(models) {
     models.Note.belongsTo(models.User);
+    models.Note.belongsTo(models.Jar);
     models.Note.belongsTo(models.Category);
   };
 
