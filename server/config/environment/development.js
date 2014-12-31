@@ -10,7 +10,10 @@ module.exports = {
   sequelize: {
     uri: 'mysql://root:@localhost:3306/grtyr-dev',
     options: {
-      logging: true
+      logging: true,
+      define: {
+        underscored: true
+      }
     }
   }
 };

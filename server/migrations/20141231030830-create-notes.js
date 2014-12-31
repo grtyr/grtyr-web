@@ -18,10 +18,10 @@ exports.up = function(db, callback) {
     category_id: {
       type: type.INTEGER
     },
-    createdAt: {
+    created_at: {
       type: type.TIMESTAMP
     },
-    updatedAt: {
+    updated_at: {
       type: type.TIMESTAMP
     }
   }, callback);

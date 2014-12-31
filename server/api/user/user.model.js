@@ -81,6 +81,13 @@ module.exports = function(sequelize, DataTypes) {
       beforeCreate: function(user, fields, fn) {
         user.updatePassword(fn);
       },
+      afterCreate: function(user, fields, fn) {
+        var description = (new Date().getFullYear() + ' Jar');
+        user.createJar({
+          name: user.name,
+          description: description
+        }).success(fn);
+      },
       beforeUpdate: function(user, fields, fn) {
         if (user.changed('password')) {
           user.updatePassword(fn);
@@ -227,14 +234,10 @@ module.exports = function(sequelize, DataTypes) {
 
   User.associate = function(models) {
     models.User.hasMany(models.Note, {
-      foreignKey: 'author_id',
       onDelete: 'CASCADE'
     });
-    models.User.hasMany(models.Jar, {
-      foreignKey: 'user_id'
-    });
+    models.User.belongsToMany(models.Jar);
     models.User.hasMany(models.Token, {
-      foreignKey: 'user_id',
       onDelete: 'CASCADE'
     });
   };

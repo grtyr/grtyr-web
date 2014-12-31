@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true
     },
     body: DataTypes.STRING,
-    author_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -19,12 +19,8 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Note.associate = function(models) {
-    models.Note.belongsTo(models.User, {
-      foreignKey: 'author_id'
-    });
-    models.Note.belongsTo(models.Category, {
-      foreignKey: 'category_id'
-    });
+    models.Note.belongsTo(models.User);
+    models.Note.belongsTo(models.Category);
   };
 
   return Note;

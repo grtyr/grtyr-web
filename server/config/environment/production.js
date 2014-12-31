@@ -17,7 +17,10 @@ module.exports = {
   sequelize: {
     uri: process.env.OPENSHIFT_MYSQL_DB_URL + process.env.OPENSHIFT_APP_NAME,
     options: {
-      logging: true
+      logging: true,
+      define: {
+        underscored: true
+      }
     }
   },
   mongo: {

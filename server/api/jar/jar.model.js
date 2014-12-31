@@ -13,9 +13,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Jar.associate = function(models) {
-    models.Jar.hasMany(models.User, {
-      foreignKey: 'jar_id'
-    });
+    models.Jar.belongsToMany(models.User);
   };
 
   return Jar;
