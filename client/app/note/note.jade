@@ -2,10 +2,10 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .container
   div(ng-hide='editNote')
-    note-form(submit-fn='saveNote()', model='note.body', submit-text='Save')
+    note-form(submit-fn='saveNote()', note='note', submit-text='Save')
     hr
   div(ng-show='editNote')
-    note-form(submit-fn='updateNote()', model='editNote.body', submit-text='Update', ng-keyup='checkEsc($event)')
+    note-form(submit-fn='updateNote()', note='editNote', submit-text='Update', ng-keyup='checkEsc($event)')
     hr
   ul.list-group
     li.note-item.list-group-item(ng-repeat='note in notes', ng-class="{'disabled': (note.id === editNote.id)}")

@@ -32,6 +32,7 @@ angular.module('grtyrApp')
         angular.forEach($scope.notes, function(n) {
           if (n.id === note.id) {
             n.body = note.body;
+            n.category_id = note.category_id;
           }
         });
         resetEdit();
