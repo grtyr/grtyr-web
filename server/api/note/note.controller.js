@@ -69,7 +69,7 @@ exports.mine = function(req, res) {
   Note
     .findAll({
       where: {
-        author_id: req.user.id
+        user_id: req.user.id
       },
       include: Category,
       order: 'created_at DESC'
@@ -88,7 +88,7 @@ exports.init = function(req, res) {
   Note
     .findAll({
       where: {
-        author_id: req.user.id
+        user_id: req.user.id
       },
       group: [yearFn],
       attributes: [
@@ -103,7 +103,7 @@ exports.init = function(req, res) {
 
 // Creates a new note in the DB.
 exports.create = function(req, res) {
-  req.body.author_id = req.user.id;
+  req.body.user_id = req.user.id;
   Note
     .create(req.body)
     .then(function(note) {
@@ -119,7 +119,7 @@ exports.update = function(req, res) {
   Note
     .findOne({
       where: sequelize.and({
-        author_id: req.user.id
+        user_id: req.user.id
       }, {
         id: req.params.id
       })

@@ -4,7 +4,7 @@ var async = require('async');
 exports.up = function(db, callback) {
   async.series([
     db.addForeignKey.bind(db, 'Notes', 'Users', 'fk_Notes_Users', {
-      'author_id': 'id'
+      'user_id': 'id'
     }, {
       onDelete: 'CASCADE'
     }),

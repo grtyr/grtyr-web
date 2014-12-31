@@ -12,7 +12,7 @@ exports.up = function(db, callback) {
     body: {
       type: type.STRING
     },
-    author_id: {
+    user_id: {
       type: type.INTEGER
     },
     category_id: {
