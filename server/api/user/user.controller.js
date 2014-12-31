@@ -2,6 +2,7 @@
 
 var sqldb = require('../../sqldb');
 var User = sqldb.User;
+var Jar = sqldb.Jar;
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var common = require('../common/controller');
@@ -116,6 +117,7 @@ exports.me = function(req, res, next) {
       where: {
         id: userId
       },
+      include: Jar,
       attributes: [
         'id',
         'name',

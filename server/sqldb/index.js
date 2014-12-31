@@ -23,6 +23,13 @@ db.User = db.sequelize.import(path.join(
 ));
 
 // Insert models below
+db.Jar = db.sequelize.import(path.join(
+  config.root,
+  'server',
+  'api',
+  'jar',
+  'jar.model'
+));
 db.Category = db.sequelize.import(path.join(
   config.root,
   'server',
