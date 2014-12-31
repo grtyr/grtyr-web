@@ -5,7 +5,8 @@ angular.module('grtyrApp')
     $scope.notes = [];
     $scope.years = [];
     $scope.note = {
-      body: ''
+      body: '',
+      category_id: 1
     };
     $scope.editNote = null;
 
