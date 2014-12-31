@@ -82,10 +82,10 @@ module.exports = function(sequelize, DataTypes) {
         user.updatePassword(fn);
       },
       afterCreate: function(user, fields, fn) {
-        var description = (new Date().getFullYear() + ' Jar');
+        var year = new Date().getFullYear(),
+          name = (user.name + '\'s ' + year + ' Jar');
         user.createJar({
-          name: user.name,
-          description: description
+          name: name
         }).success(fn);
       },
       beforeUpdate: function(user, fields, fn) {
