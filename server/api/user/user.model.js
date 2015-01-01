@@ -236,7 +236,9 @@ module.exports = function(sequelize, DataTypes) {
     models.User.hasMany(models.Note, {
       onDelete: 'CASCADE'
     });
-    models.User.belongsToMany(models.Jar);
+    models.User.belongsToMany(models.Jar, {
+      onDelete: 'CASCADE'
+    });
     models.User.hasMany(models.Token, {
       onDelete: 'CASCADE'
     });

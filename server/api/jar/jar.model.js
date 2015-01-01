@@ -13,8 +13,12 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Jar.associate = function(models) {
-    models.Jar.belongsToMany(models.User);
-    models.Jar.hasMany(models.Note);
+    models.Jar.belongsToMany(models.User, {
+      onDelete: 'CASCADE'
+    });
+    models.Jar.hasMany(models.Note, {
+      onDelete: 'CASCADE'
+    });
   };
 
   return Jar;

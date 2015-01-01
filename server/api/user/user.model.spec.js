@@ -1,6 +1,4 @@
 'use strict';
-
-var app = require('../../app');
 var User = require('../../sqldb').User;
 
 var userTemplate = {
@@ -15,7 +13,7 @@ var user = User.build(userTemplate);
 describe('User Model', function() {
   before(function() {
     // Sync and clear users before testing
-    User.sync().then(function() {
+    return User.sync().then(function() {
       return User.destroy();
     });
   });

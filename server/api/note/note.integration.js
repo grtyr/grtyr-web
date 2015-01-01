@@ -52,7 +52,7 @@ describe('Note API:', function() {
           if (err) {
             return done(err);
           }
-          notes = res.body.notes;
+          notes = res.body;
           done();
         });
     });

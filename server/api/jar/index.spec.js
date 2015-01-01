@@ -6,8 +6,18 @@ var jarCtrlStub = {
   index: 'jarCtrl.index'
 };
 
+var authServiceStub = {
+  isAuthenticated: function() {
+    return 'authService.isAuthenticated';
+  },
+  hasRole: function(role) {
+    return 'authService.hasRole.' + role;
+  }
+};
+
 var routerStub = {
-  get: sinon.spy()
+  get: sinon.spy(),
+  post: sinon.spy()
 };
 
 // require the index with our stubbed out modules
@@ -17,7 +27,8 @@ var jarIndex = proxyquire('./index.js', {
       return routerStub;
     }
   },
-  './jar.controller': jarCtrlStub
+  './jar.controller': jarCtrlStub,
+  '../../auth/auth.service': authServiceStub
 });
 
 describe('Jar API Router:', function() {
@@ -28,10 +39,10 @@ describe('Jar API Router:', function() {
 
   describe('GET /api/jars', function() {
 
-    it('should route to jar.controller.index', function() {
+    it('should verify admin role and route to jar.controller.index', function() {
       routerStub.get
-                .withArgs('/', 'jarCtrl.index')
-                .should.have.been.calledOnce;
+        .withArgs('/', 'authService.hasRole.admin', 'jarCtrl.index')
+        .should.have.been.calledOnce;
     });
 
   });

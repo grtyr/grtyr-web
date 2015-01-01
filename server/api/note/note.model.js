@@ -13,12 +13,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     body: DataTypes.STRING,
     user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER
     },
     jar_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER
     },
     category_id: {
       type: DataTypes.INTEGER
