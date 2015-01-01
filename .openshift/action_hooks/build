@@ -26,9 +26,9 @@ mv dist/* .
 rm -rf dist
 
 # Migrate DB
-echo -e "\n-------------------------------\n$(date)  -- Migration running\n-------------------------------\n" >> ~/node-diy/logs/node.log
+echo -e "\n-------------------------------\n$(date)  -- Migration running\n-------------------------------\n" >> ${OPENSHIFT_NODEJS_LOG_DIR}node.log
 cd ${OPENSHIFT_REPO_DIR}server
-../node_modules/.bin/db-migrate up -e prod >> ~/node-diy/logs/node.log
+../node_modules/.bin/db-migrate up -e prod >> ${OPENSHIFT_NODEJS_LOG_DIR}node.log
 
 # Copy over config file
 cp ${OPENSHIFT_DATA_DIR}local.env.js server/config/
