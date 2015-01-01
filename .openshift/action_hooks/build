@@ -4,11 +4,14 @@
 HOME=$OPENSHIFT_REPO_DIR
 cd $OPENSHIFT_REPO_DIR
 
-mkdir -p "$OPENSHIFT_DATA_DIR"node_modules
-mkdir -p "$OPENSHIFT_DATA_DIR"bower_components
+# Cache npm and bower components on main gear
+if [ "$OPENSHIFT_GEAR_UUID" == "$OPENSHIFT_APP_UUID" ]; then
+  mkdir -p ${OPENSHIFT_DATA_DIR}node_modules
+  mkdir -p ${OPENSHIFT_DATA_DIR}bower_components
 
-ln -s "$OPENSHIFT_DATA_DIR"node_modules node_modules
-ln -s "$OPENSHIFT_DATA_DIR"bower_components client
+  ln -s ${OPENSHIFT_DATA_DIR}node_modules node_modules
+  ln -s ${OPENSHIFT_DATA_DIR}bower_components client
+fi
 
 npm install --loglevel error
 
@@ -22,4 +25,10 @@ ls -1 | grep -E -v 'dist|node_modules' | xargs rm -rf
 mv dist/* .
 rm -rf dist
 
+# Migrate DB
+echo -e "\n-------------------------------\n$(date)  -- Migration running\n-------------------------------\n" >> ~/node-diy/logs/node.log
+cd ${OPENSHIFT_REPO_DIR}server
+../node_modules/.bin/db-migrate up -e prod >> ~/node-diy/logs/node.log
+
+# Copy over config file
 cp ${OPENSHIFT_DATA_DIR}local.env.js server/config/
