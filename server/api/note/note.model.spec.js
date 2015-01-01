@@ -1,12 +1,14 @@
 'use strict';
 
-var Note = require('../../sqldb').Note;
+var sqldb = require('../../sqldb');
+var sequelize = sqldb.sequelize;
+var Note = sqldb.Note;
 
 
 describe('Note Model', function() {
   before(function() {
     // Sync and clear users before testing
-    return Note.sync().then(function() {
+    return sequelize.sync().then(function() {
       return Note.destroy();
     });
   });

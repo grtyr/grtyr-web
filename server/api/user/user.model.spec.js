@@ -1,5 +1,7 @@
 'use strict';
-var User = require('../../sqldb').User;
+var sqldb = require('../../sqldb');
+var sequelize = sqldb.sequelize;
+var User = sqldb.User;
 
 var userTemplate = {
   provider: 'local',
@@ -13,7 +15,7 @@ var user = User.build(userTemplate);
 describe('User Model', function() {
   before(function() {
     // Sync and clear users before testing
-    return User.sync().then(function() {
+    return sequelize.sync().then(function() {
       return User.destroy();
     });
   });
